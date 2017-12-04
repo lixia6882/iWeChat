@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+    	<head>
+        	<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=no,email=no,adress=no">
+		<meta name="full-screen" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<title>联动掌财公众号</title>
+    	<link rel="stylesheet" type="text/css" href="../css/public.css">
+    	<link rel="stylesheet" type="text/css" href="../css/mobiscroll.custom-2.6.2.min.css">
+    	<link rel="stylesheet" type="text/css" href="../css/auth.css">
+   	</head>
+    <body>
+		<p class="po"></p>
+		<div class="loading">
+			<p></p>
+		</div>
+
+		<div class="credit_page">
+			<header class="credit_header">
+				<a class="back">返回</a>
+				<span>信用卡实名认证</span>
+			</header>
+			<div class="credit_cnt">
+				<div class="comm_slt" id="commSlt">选择认证商户</div>
+				<ul id="commSlt_list" style="display: none">
+
+					<!-- <li>T0D1测试商户1</li>
+					<li>T0D1测试商户2</li>
+					<li>T0D1测试商户3</li>
+					<li>T0D1测试商户4</li>
+					<li>T0D1测试商户5</li>
+					<li>T0D1测试商户6</li>
+					<li>T0D1测试商户7</li> -->
+				</ul>
+				<ul class="credit_list">
+                    <li class="credit_items">
+                                        <span class="nn">姓名:</span>
+						<input type="text" id="c_name" readonly="" placeholder="请选择认证商户" />
+					</li> 
+					<li class="credit_items">
+						<span class="nn">身份证号:</span>
+						<input type="text" id="c_cardId" maxlength="18" />
+					</li> 
+					<li class="credit_items">
+						<span class="nn">卡号:</span>
+						<input type="tel" id="c_cardNum" maxlength="23" />
+					</li> 
+					<li class="credit_items">
+                                        <span class="nn">银行预留手机号:</span>
+						<input type="tel" id="c_tel" maxlength="11" />
+					</li> 
+					<li class="credit_items">
+						<span>有效期:</span>
+						<input type="text" id="c_valid" readonly="readonly" />
+                        <label class="label"></label>
+					</li> 
+					<li class="credit_items">
+						<span>CVV2:</span>
+						<input type="tel" id="c_cvv2" maxlength="3" />
+					</li> 
+				</ul>
+			</div>
+			<div class="submit_btn" id="c_submitBtn">
+				提&nbsp;&nbsp;交
+			</div> 
+
+        <textarea style="display:none" id="tra" rows="15" cols="65">
+        -----BEGIN PUBLIC KEY-----
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSepHLK4xUekUQaEl3ZW
+        DcbGJVq+e42am/VAHly4INpup78HsK5Co4jNA8TkQzoxn/IPOhqcrwaIpHXA1ZPe
+        Ezf5qXefgPh6P/cuRkLgnOvOaYSa++gRvGaH59elMjkezF2v8wPbMjgVTAXd0WPS
+        diMqjb8QwKdAUZ1WktQ7/BhStay65bqwIweY/1cBG03Y0bYvt+4+lCHzFejUiLgN
+        bwZDziIpwtm/L2LLQcu7nh5h4s1ZzcBnImeiolFZJhl8vcuKGg15EkpnDgXTp1dz
+        X1H8vQmgbdVy+Rfx7EB2MFBY6SB6wcpw/k8ZYLFjTU/GsnszCCz8SSW4uhPAKJql
+        BQIDAQAB
+        -----END PUBLIC KEY-----
+        </textarea>
+
+        </div>
+        <script>
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        </script>
+        <script type="text/javascript" src="../js/jquery1.7.js"></script>
+        <script type="text/javascript" src="../js/zepto.min.js"></script>
+        <script type="text/javascript" src="../js/mobiscroll.custom-2.6.2.min.js"></script>
+        <script type="text/javascript" src="../js/jsencrypt.min.js"></script>
+        <script type="text/javascript">
+        ; (function() {
+            var phone = sessionStorage.getItem("phone");
+            var SessionID = sessionStorage.getItem("SessionID");
+            $.ajax({
+                url: "http://10.10.77.94:9888/GetWeChat",
+                type: 'GET',
+                dataType: "jsonp",
+                jsonp: "callback",
+                data: {
+                    "typeX": "U_SEL_POS_MERAUTHLIST",
+                    "tel": phone,
+                    "btype": "json",
+                    "ctype": "gb2312",
+                    "SessionID":SessionID
+                },
+                success: function(data) {
+                    console.log(data)
+
+                    var html = "";
+                    for (var i in data.a) {
+                        /*加的内容*/
+                        html += "<li data='" + data.a[i][0].cardname + "&" + data.a[i][0].merid + "'>" + data.a[i][0].mername + "</li>";
+                        /*加的内容*/
+                    }
+                    $("#commSlt_list").html(html)
+                },
+                error: function() {
+                    alert("请求失败");
+                }
+            })
+
+            var commID = "";
+            // 选择认证商户
+            $("#commSlt").click(function() {
+                $("#commSlt_list").mobiscroll().treelist({
+                    theme: "android-ics light",
+                    lang: "zh",
+                    display: 'bottom',
+                    headerText: '选择认证商户',
+                    onSelect: function(valueText) {
+                        var m = $(this).find("li").eq(valueText).html();
+                        $("#commSlt").text(m);
+                        $("#c_name").val($(this).find("li").attr("data"));
+                        /*加的内容*/
+                        var da = $(this).find("li").eq(valueText).attr("data").split("&");
+                        $("#c_name").val(da[0]);
+                        commID = da[1];
+                        /*加的内容*/
+                        console.log(da, commID);
+                    }
+                });
+                $("#commSlt_list_dummy").focus();
+            })
+
+            // 信用卡卡号
+            $("#c_cardNum").on("input propertychang",
+            function() {
+                var $this = $(this),
+                v = $this.val();
+            /\S{5}/.test(v) && $this.val(v.replace(/\s/g, '').replace(/(.{4})/g, "$1 "));
+            });
+
+            // 有效期
+            $("#c_valid").focus(function() {
+                loadtime("#c_valid", "date");
+
+
+            });
+
+            $("#c_cvv2").on("input", function(){
+                this.value = this.value.replace(/\s/g,'').replace(/[^\d]/g,'');
+            });
+             
+
+            // 提交按钮
+            $("#c_submitBtn").click(function() {
+                var commSlt = trim($("#commSlt").text()); // 选择认证商户
+                var c_name = trim($("#c_name").val()); // 姓名
+                var c_cardId = trim($("#c_cardId").val().toUpperCase()); // 身份证号
+                var c_cardNum = trim($("#c_cardNum").val()); // 信用卡卡号
+                var c_tel = trim($("#c_tel").val()); // 银行预留手机号
+                var c_valid = trim($("#c_valid").val().substr(2).replace("/", "")); // 有效期
+                var c_cvv2 = trim($("#c_cvv2").val()); // CVV2 
+                var valid1 = c_valid.substr(2) + c_valid.substr(0, 2); //MMYY
+
+
+                if (commSlt == "选择认证商户") {
+                    getWidth("请选择认证商户！");
+                    return;
+                } else if (c_name == "") {
+                    getWidth("姓名不能为空！");
+                    return;
+                }
+
+                // 身份证号
+                if (c_cardId == "") {
+                    getWidth("身份证号不能为空！");
+                    return;
+                } else if (! (/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X|x)$/.test(c_cardId))) {
+                    getWidth("身份证号格式不正确！");
+                    return;
+                }
+
+                //信用卡号
+                if (c_cardNum == "") {
+                    getWidth("卡号不能为空！");
+                    return;
+                } else if (! (/^[0-9]{15,19}$/.test(c_cardNum))) {
+                    getWidth("卡号格式不正确！");
+                    return;
+                }
+
+                //手机号验证
+                if (c_tel == "") {
+                    getWidth("银行预留手机号不能为空！");
+                    return;
+                } else if (! (/^1[34578]\d{9}$/.test(c_tel))) {
+                    getWidth("手机号码格式错误！");
+                    return;
+                }
+
+                if (c_cvv2 != "") {
+                        if(c_cvv2.length!=3){
+                                getWidth("cvv2应由3位数字组成！");
+                                return;
+                        }
+                }
+                var year = new Date().getFullYear().toString().substr(2);
+                var mon = new Date().getMonth()+1;  
+                if(c_valid.substr(0, 2) == year){
+                    if(c_valid.substr(2) <= mon){
+                        getWidth("有效期小于当前日期");
+                    }
+                }
+
+                //加密
+                var encrypt = new JSEncrypt();
+                encrypt.setPublicKey($("#tra").val()); 
+
+                var c_name_pwd = encrypt.encrypt(c_name);
+    
+                //var c_cardId_pwd = encrypt.encrypt(c_cardId);      
+                //var c_cardNum_pwd = encrypt.encrypt(c_cardNum);         
+                //var c_tel_pwd = encrypt.encrypt(c_tel);         
+                //var valid1_pwd = encrypt.encrypt(valid1);        
+                //var c_cvv2_pwd = encrypt.encrypt(c_cvv2);
+
+                var SessionID2 = sessionStorage.getItem("SessionID");
+
+                var other_pwd = encrypt.encrypt(c_cardId+"-"+c_cardNum+"-"+c_tel+"-"+valid1+"-"+c_cvv2);
+
+                //alert(SessionID2);
+                $.ajax({
+                    url: "http://10.10.77.94:9888/GetWeChat",
+                    type: 'GET',
+                    dataType: "jsonp",
+                    jsonp: "callback",
+                    data: {
+                        "typeX": "U_SEL_POS_AUTH_UPDATE",
+                        "tel": phone,
+                        "SessionID":SessionID2,
+                        "btype": "json",
+                        "ctype": "gb2312",
+                        "MerNo": commID,
+                        "UserName": encodeURI(c_name_pwd),
+                        //"OtherInfo": encodeURI(other_pwd)
+                        //"CardNo": encodeURI(c_cardNum_pwd),
+                        //"UserIdNo": encodeURI(c_cardId_pwd),
+                        //"CardCVV2": encodeURI(c_cvv2_pwd),
+                        //"CardExp": encodeURI(valid1_pwd),
+                        //"UserMobile": encodeURI(c_tel_pwd)
+                        //"CardCVV2": encodeURI(c_cvv2),
+                        //"CardExp": encodeURI(valid1),
+                        //"UserMobile": encodeURI(c_tel)
+                        "AuthOther": encodeURI(other_pwd)
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        $(".loading").css("display", "block");
+                        setTimeout(function() {
+                            $(".loading").css("display", "none");
+                            if (data.code == "0000") {
+                            location.href = "do_succeed.html"; //跳转至成功页面;
+                            } else { 
+                                getWidth(data.msg);
+                            }
+                        },
+                        1000)
+
+                    },
+                    error: function() {
+                        alert("请求失败");
+                    }
+                })
+
+            });
+
+            // 去除所有空格
+            function trim(str) {
+             return str.replace(/\s/g, "");
+            }
+
+            // 初始化日期控件
+            function loadtime(add, time) {
+                var currYear = (new Date()).getFullYear();
+                var opt = {
+                    preset: time,
+                    //日期，可选：date|datetime|time|tree_list|image_text|select  
+                    theme: 'android-ics light',
+                    //皮肤样式，可选：default|android|android-ics light|android-ics|ios|jqm|sense-ui|wp light|wp  
+                    display: 'modal',
+                    //显示方式 ，可选：modal|inline|bubble|top|bottom  
+                    mode: 'scroller',
+                    //日期选择模式，可选：scroller|clickpick|mixed  
+                    lang: 'zh',
+                    dateFormat: 'yyyy/mm',
+                    // 日期格式  
+                    dateOrder: 'yyyymm',
+                    //面板中日期排列格式  
+                    //dayText: '日',
+                    monthText: '月',
+                    yearText: '年',
+                    //面板中年月日文字  
+                    showNow: false,
+                    startYear: currYear,
+                    //开始年份    
+                    endYear: currYear + 50, //结束年份 
+                    //endYear:2099 //结束年份 
+                    onSelect:function(){
+                      
+                        $(".label").show();
+
+                    }    
+
+                };
+                $(add).mobiscroll(opt);
+              /*  */
+            }
+
+            // 提示错误信息
+            function getWidth(ma) {
+                $(".po").css("display", "block");
+                $(".po").html(ma);
+                var wid = $(".po").width() / 2;
+                $(".po").css({
+                    "marginLeft": -wid + "px"
+                });
+            setTimeout("$('.po').hide()", 2000);
+            }
+
+            //返回
+            $(".back").on("tap",
+            function() {
+                window.history.go( - 1);
+            })
+
+            //清空有效期
+            $(".label").on("click",function(){
+                $("#c_valid").val("");
+                $(this).hide();
+            })
+        })(Zepto)
+        </script>
+	</body>
+</html>

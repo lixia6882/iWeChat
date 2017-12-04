@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=no,email=no,adress=no">
+		<meta name="full-screen" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<title>联动掌财公众号</title>
+		<link rel="stylesheet" type="text/css" href="../css/public.css">
+		<style type="text/css">
+			.verify_page {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				display: -webkit-flex;
+				display: -moz-flex;
+				display: -ms-flex;
+				flex-direction: column;
+				-webkit-flex-direction: column;
+				-ms-flex-direction: column;
+				-moz-flex-direction: column;
+				background: #f0f0f0 url(../images/logo_gray.png) no-repeat center bottom 0.9rem;
+				background-size: 2rem 2rem;
+			}
+			
+			.verify_page .login_header {
+				width: 100%;
+				height: 0.86rem;
+				background: #fff;
+				line-height: 0.86rem;
+				text-align: center;
+				position: relative;
+			}
+			
+			.verify_page .as {
+				position: absolute;
+				display: block;
+				left: 0.42rem;
+				top: 50%;
+				margin-top: -0.2rem;
+				padding-left: 0.36rem;
+				background: url(../images/8_03.gif) no-repeat left center;
+				background-size: 0.25rem 0.43rem;
+				width: 0.25rem;
+				height: 0.43rem;
+			}
+			
+			.verify_page .login_footer {
+				width: 100%;
+				height: 2.55rem;
+				border-top: 1px solid #c7c7c7;
+				padding: 0.28rem 0.46rem;
+			}
+			
+			.verify_page .login_footer h2 {
+				color: #f23861;
+				font-size: 0.28rem;
+				padding-bottom: 0.21rem;
+			}
+			
+			.verify_page .login_footer p {
+				color: #f23861;
+				line-height: 0.46rem;
+				font-size: 0.24rem;
+			}
+			
+			.verify_page .login_section {
+				-webkit-flex: 1;
+				width: 100%;
+				height: 100%;
+				display: flex;
+				display: -webkit-flex;
+				display: -moz-flex;
+				display: -ms-flex;
+				flex-direction: column;
+				-webkit-flex-direction: column;
+				-ms-flex-direction: column;
+				-moz-flex-direction: column;
+				padding: 0.4rem;
+				padding-top: 0.49rem;
+			}
+			
+			.verify_page .login_section .divs {
+				width: 100%;
+				height: 1rem;
+				border-radius: 0.2rem;
+				background: #fff;
+				line-height: 1.04rem;
+				padding-left: 0.23rem;
+				font-size: 0.32rem;
+				position: relative;
+				margin-bottom: 0.23rem;
+			}
+			
+			.verify_page .login_section .divs span {
+				color: #989898;
+				width: 1.79rem;
+				display: inline-block;
+				font-size: 0.32rem;
+			}
+			
+			.verify_page .login_section .divs input {
+				width: 2.7rem;
+				height: 90%;
+				font-size: 0.28rem;
+				border: none;
+				outline: none;
+				font-size: 0.28rem;
+			}
+			
+			.verify_page .login_section .divs .lasds {
+				width: 0.34rem;
+				height: 0.2rem;
+				display: inline-block;
+				background: red url(../images/oi.gif) no-repeat left center;
+				background-size: 0.34rem 0.2rem;
+				margin-left: 1rem;
+			}
+			
+			.verify_page .login_section .divs .lab {
+				width: 1.9rem;
+				height: 100%;
+				background: #f8f8f8;
+				display: block;
+				float: right;
+				border-radius: 0rem 0.2rem 0.2rem 0em;
+				text-align: center;
+			}
+			
+			.verify_page .login_section .divs .lads {
+				width: 0.33rem;
+				height: 0.33rem;
+				display: inline-block;
+				background: url(../images/qw.gif) no-repeat;
+				background-size: 100%;
+				visibility: hidden;
+			}
+			
+			.verify_page .login_section .divs #ver2 {
+				margin-right: 0.3rem;
+			}
+			
+			.verify_page .login_section .divs label {
+				color: #f23861;
+			}
+			
+			.verify_page .login_section .tel {
+				width: 100%;
+				height: 1.04rem;
+				border-radius: 0.2rem;
+				background: #fff;
+				line-height: 1.04rem;
+				padding-left: 0.23rem;
+				margin-bottom: 0.55rem;
+			}
+			
+			.verify_page .login_section .tel span {
+				padding-right: 0.32rem;
+				font-size: 0.34rem;
+			}
+			
+			.verify_page .login_section .tel input {
+				-webkit-flex: 1;
+				border: none;
+				outline: none;
+				-webkit-appearance: none;
+				padding-left: 0.1rem;
+				font-size: 0.3rem;
+				letter-spacing: 1px;
+			}
+			
+			.verify_page .login_section .tel label {
+				width: 0.33rem;
+				height: 0.33rem;
+				display: inline-block;
+				background: url(../images/qw.gif) no-repeat;
+				background-size: 100%;
+				float: right;
+				margin-top: 0.39rem;
+				margin-right: 0.4rem;
+				visibility: hidden;
+			}
+			
+			.verify_page .login_section .state {
+				width: 100%;
+				font-size: 0.28rem;
+			}
+			
+			.verify_page .login_section .state a {
+				color: #f23861;
+			}
+			
+			.verify_page .login_section .state p {
+				width: 0.36rem;
+				height: 0.36rem;
+				border: 1px solid #999;
+				display: inline-block;
+				float: left;
+				margin-left: 0.2rem;
+				margin-right: 0.1rem;
+			}
+			
+			.verify_page .login_section .state .bei {
+				background: url(../images/zhu.png) no-repeat left center;
+				background-size: 100% 100%;
+				border: none;
+			}
+			
+			.verify_page .login_section .login_btn {
+				width: 83%;
+				height: 0.76rem;
+				background: #f23861;
+				border-radius: 10rem 10rem;
+				line-height: 0.78rem;
+				margin: 0 auto;
+				font-size: 0.36rem;
+				margin-top: 1.61rem;
+				text-align: center;
+				color: #fff;
+				margin-bottom: 0.29rem;
+				letter-spacing: 2px;
+			}
+			
+			.find_page .login_section .login_btn {
+				margin-top: 0rem;
+			}
+			
+			.verify_page {
+				background: #f0f0f0;
+			}
+			
+			.verify_page .login_section .login_btn {
+				margin-top: 1rem;
+			}
+			
+			.label {
+				display: block;
+				width: 2rem;
+				height: 100%;
+				position: absolute;
+				right: 0;
+				top: 0;
+				text-align: center;
+			}
+			
+			.label img {
+				width: 0.32rem;
+				height: 0.2rem;
+				vertical-align: middle;
+			}
+			
+			.chang1, .chang2, .chang3 {
+				color: red;
+				font-size: 0.24rem;
+				padding-left: 0.3rem;
+				margin-bottom: 0.23rem;
+				display: none;
+			}
+
+			.loading {
+				display: none;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				background: #000;
+				opacity: 0.5;
+				z-index: 223; 
+		    }
+			.loading p {
+				width: 2rem;
+				height: 2rem;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-top: -1rem;
+				margin-left: -1rem;
+				background: url(/posp/images/loading.gif) no-repeat;
+				background-size: 100% 100%;
+				z-index: 10000; 
+		    }
+			.po {
+				  position: absolute;
+				  padding: 0.2rem 0.15rem;
+				  background: #000;
+				  opacity: 0.3;
+				  color: #fff;
+				  border-radius: 0.2rem 0.2rem;
+				  bottom: 10%;
+				  left: 50%;
+				  margin: 0 auto;
+				  display: none;
+				  white-space:nowrap;
+			}
+		</style>
+	</head>
+	<body>
+		<p class="po"></p>
+		<div class="loading">
+			<p></p>
+		</div>
+		<div class="verify_page">
+			<header class="login_header">
+				<a href="do_find.html" class="as"></a>
+				<h1>修改密码</h1>
+			</header>
+			<section class="login_section">
+				<div class="divs">
+					<span>密码</span>
+					<input type="password" placeholder="请输入密码" style="margin-right: 0.8rem" class="pas pas1" id="pas1">
+					<label class="label"><img src="../images/biyan@2x.png" id="changed"></label>
+				</div>
+				<p class='chang1'>密码由6-12位数字或字母组成</p>
+				<div class="divs">
+					<span>确认密码</span>
+					<input type="password" placeholder="请再次输入密码" style="margin-right:0.8rem" class="pas pas2" id="pas2">
+					<label class="label"><img src="../images/biyan@2x.png" id="changed"></label>
+				</div>
+				<p class='chang2'>请输入确认密码</p>
+				<div class="divs"><span>验证码</span><input type="tel" placeholder="请输入验证码" pattern="\d*" class="pas pas3"><label class="lab" iSclick="true">获取验证码</label></div>
+				<p class='chang3'>请输入验证码</p>
+				<div class="login_btn">确定</div>
+			</section>
+			<footer class="login_footer">
+				<h2>温馨提示</h2>
+				<p>1.密码长度6-12位数字或字母组成</p>
+				<p>2.验证码在2分钟内有效</p>
+			</footer>
+		</div>
+		<textarea style="display:none" id="tra" rows="15" cols="65">-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSepHLK4xUekUQaEl3ZW DcbGJVq+e42am/VAHly4INpup78HsK5Co4jNA8TkQzoxn/IPOhqcrwaIpHXA1ZPe Ezf5qXefgPh6P/cuRkLgnOvOaYSa++gRvGaH59elMjkezF2v8wPbMjgVTAXd0WPS diMqjb8QwKdAUZ1WktQ7/BhStay65bqwIweY/1cBG03Y0bYvt+4+lCHzFejUiLgN bwZDziIpwtm/L2LLQcu7nh5h4s1ZzcBnImeiolFZJhl8vcuKGg15EkpnDgXTp1dz X1H8vQmgbdVy+Rfx7EB2MFBY6SB6wcpw/k8ZYLFjTU/GsnszCCz8SSW4uhPAKJql BQIDAQAB -----END PUBLIC KEY-----</textarea>
+		<script>
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+		</script>
+		<script type="text/javascript" src="../js/jquery1.7.js"></script>
+		<script type="text/javascript" src="../js/hideShowPassword.min.js"></script>
+		<script type="text/javascript" src="../js/jsencrypt.min.js"></script>
+		<script type="text/javascript">
+			;(function() {
+				var tel = sessionStorage.getItem("tel");
+				$(".divs .pas").on("input", function() {
+					var lens = $(this).val().length;
+					if(lens > 0) {
+						$(this).siblings(".lads").css({
+							"visibility": "visible"
+						});
+					} else {
+						$(this).siblings(".lads").css({
+							"visibility": "hidden"
+						});
+					}
+				});
+
+				//密码显示
+				var da = false;
+				$(".label").on("click", "img", function() {
+					if(!da) {
+						$(this).attr("src", "../images/zhengyan@2x.png");
+						$(this).parent().siblings("input").showPassword(); //可见密码
+						da = true;
+					} else {
+						$(this).attr("src", "../images/biyan@2x.png");
+						$(this).parent().siblings("input").hidePassword(); //可见密码
+						da = false;
+					}
+
+				});
+
+				//验证码
+				$(".pas3").on("input", function() {
+					var val = $(this).val();
+					var lens = $(this).val().length;
+					if(lens > 4) {
+						$(this).val($(this).val().substr(0, 4));
+					}
+					this.value = this.value.replace(/\s/g, '').replace(/[^\d]/g, '');
+				});
+
+				//获取验证码
+				var countdown = 60;
+				function GetNumber() {
+					$(".lab").html(countdown + "s");
+					countdown--;
+					if(countdown >= 0) {
+						timer = setTimeout(GetNumber, 2000);
+					} else {
+						$(".lab").html("获取验证码");
+						countdown = 60;
+						$(".lab").attr("iSclick", "true");
+					}
+				}
+
+				//获取验证码
+				var authCodeNo;
+				$(".lab").on("click", function() {
+					if($(this).attr("iSclick") == "true") {
+						GetNumber();
+						$(this).attr("iSclick", "false");
+						$.ajax({
+							url: "http://10.10.77.94:9888/GetWeChat",
+							type: 'GET',
+							dataType: "jsonp",
+							jsonp: "callback",
+							data: {
+								"typeX": "USER_GET_AUTHCODE",
+								"tel": tel, //手机号
+								"btype": "json",
+								"ctype": "gb2312"
+							},
+							success: function(data) {
+								console.log(data);
+								authCodeNo = data.authCodeNo;
+								console.log(authCodeNo);
+							},
+							error: function() {
+								alert("请求失败");
+							}
+						});
+					}
+				});
+
+				var pwdReg = /^[a-zA-Z0-9]{6,12}$/;
+
+				//点击确定
+				$(".login_btn").on("click", function() {
+					var pas1 = $(".pas1").val(),
+						pas2 = $(".pas2").val(),
+						pas3 = $(".pas3").val();
+                       //请输入密码
+						if(pas1=="") {
+							getWidth("您还未输入密码");
+						   return;
+						} else if(!pwdReg.test(pas1)) {
+							getWidth("输入密码应由6-12位数字或字母组成");
+							return;
+						}
+						//确认密码
+						if(pas2 == "") {
+							getWidth("请输入确认密码");
+							return;
+						} else if(!pwdReg.test(pas2)) {
+							getWidth("确认密码应由6-12位数字或字母组成");
+							return;
+						} 
+                        //验证码
+						if(pas3 == "") {
+							getWidth("请输入验证码");
+							return;
+						} else if(!(/^[0-9]{4}$/.test(pas3))) {
+							getWidth("验证码输入错误,应由4位数字组成");
+							return;
+						} 
+						if(pas1 != pas2) {
+							getWidth("两次密码输入不一致");
+							return;
+						}
+					var encrypt = new JSEncrypt();
+					encrypt.setPublicKey($("#tra").val());
+					var datapwd = encrypt.encrypt(pas1);
+					$.ajax({
+						url: "http://10.10.77.94:9888/GetWeChat",
+						type: 'GET',
+						dataType: "jsonp",
+						jsonp: "callback",
+						data: {
+							"typeX": "USER_CHG_LOGINPWD",
+							"tel": tel, //手机号
+                            "loginPWD": encodeURI(datapwd),
+                            "authCode": pas3, 
+                            "authCodeNo": authCodeNo,
+							"btype": "json",
+							"ctype": "gb2312"
+						},
+						success: function(data) {
+							console.log(data);
+							$(".loading").css("display", "block");
+							setTimeout(function() {
+								$(".loading").css("display", "none");
+                                if(data.code == "0000") { 
+		                                location.href="do_index.html";  //跳转
+	                                } else {
+		                                getWidth(data.msg);
+	                                }
+							}, 1000)
+						},
+						error: function() {
+							$(".loading").css("display", "none");
+							alert("请求失败");
+						}
+					});
+				});
+				
+				var _height = $(window).height();
+				$('.verify_page').css({
+					'height': _height + 'px'
+				});
+				$(window).resize(function() {
+					$('.verify_page').css({
+						'height': _height + 'px'
+					});
+				});
+
+        //提示错误信息
+        function getWidth(ma) {
+            $(".po").css("display", "block");
+            $(".po").html(ma);
+            var wid = $(".po").width() / 2;
+					$(".po").css({
+						"marginLeft":-wid+"px",
+						"bottom":"30%",
+						"z-index":"10000",
+						"opacity":"0.7"
+					});
+					setTimeout("$('.po').hide()",2000);
+				}
+			})(jQuery);
+		</script>
+	</body>
+</html>  

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"> 
+  <meta name="format-detection" content="telephone=no,email=no,adress=no"> 
+  <meta name="full-screen" content="yes"> 
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<title>联动掌财公众号</title>
+  <link rel="stylesheet" type="text/css" href="../css/public.css"> 
+  <link rel="stylesheet" type="text/css" href="../css/us.css"> 
+</head>
+<body>
+		<div class="us_page">
+			<header class="header">
+ 
+				<a class="back"></a> 
+
+				<h1>关于我们</h1>
+			</header>
+			<footer class="footer">
+				<p style="margin-bottom: 0.45rem;color: #333333;font-size: 0.33rem;">版本: 1.0</p>
+				<p style="margin-bottom: 0.26rem;color: #999999;font-size: 0.22rem;">&copy;copyright2017联动优势电子商务有限公司版权所有</p>
+			</footer>
+		</div>
+		<script>
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+		</script>
+  <script type="text/javascript" src="../js/zepto.min.js"></script>
+<script type="text/javascript">
+	;(function(){
+		var wid=$(".footer").width();
+		$(".footer").css("marginLeft",-wid/2+"px");
+
+		$(".back").on("tap",function(){
+			window.history.go(-1);
+		})
+	})(Zepto)
+</script>
+</body>
+</html>

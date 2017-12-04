@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=no,email=no,adress=no">
+		<meta name="full-screen" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<link rel="stylesheet" type="text/css" href="../css/public.css">
+		<title>联动掌财公众号</title>
+		<style type="text/css">
+		.login_page {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flex;
+			flex-direction: column;
+			-webkit-flex-direction: column;
+			-ms-flex-direction: column;
+			-moz-flex-direction: column;
+			background: #f0f0f0 url(../images/logo_gray.png) no-repeat center bottom 0.9rem;
+			background-size: 2rem 2rem;
+		}
+			
+		.login_header {
+			width: 100%;
+			height: 0.86rem;
+			background: #fff;
+			line-height: 0.86rem;
+			text-align: center;
+			position: relative;
+		}
+		
+		.as {
+			position: absolute;
+			display: block;
+			left: 0.42rem;
+			top: 50%;
+			margin-top: -0.2rem;
+			padding-left: 0.36rem;
+			background: url(../images/8_03.gif) no-repeat left center;
+			background-size: 0.25rem 0.43rem;
+			width: 0.25rem;
+			height: 0.43rem;
+		}
+			
+		.login_section{
+          -webkit-flex: 1;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          display: -webkit-flex;
+          display: -moz-flex;
+          display: -ms-flex;
+          flex-direction: column;
+          -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+          -moz-flex-direction: column;
+          padding: 0.4rem;
+          padding-top: 0.49rem;
+	        }
+			
+			.tel {
+				width: 100%;
+				height: 1.04rem;
+				border-radius: 0.2rem;
+				background: #fff;
+				line-height: 1.04rem;
+				padding-left: 0.23rem;
+				margin-bottom: 0.55rem;
+			}
+			
+			.tel span {
+				padding-right: 0.32rem;
+				font-size: 0.34rem;
+			}
+			
+			.tel input {
+				-webkit-flex: 1;
+				border: none;
+				outline: none;
+				-webkit-appearance: none;
+				padding-left: 0.1rem;
+				font-size: 0.3rem;
+				letter-spacing: 1px;
+			}
+			
+			.state {
+				width: 100%;
+				font-size: 0.28rem;
+			}
+			
+			.state p {
+				width: 0.36rem;
+			    height: 0.36rem;
+			    border: 1px solid #999;
+			    display: inline-block;
+			    float: left;
+			    margin-left: 0.2rem;
+			    margin-right: 0.1rem;
+			}
+			
+			.login_btn {
+				width: 83%;
+				height: 0.76rem;
+				border-radius: 10rem 10rem;
+				line-height: 0.78rem;
+				margin: 0 auto;
+				font-size: 0.36rem;
+				margin-top: 1.61rem;
+				text-align: center;
+				color: #fff;
+				margin-bottom: 0.29rem;
+				letter-spacing: 2px;
+			}
+			
+			.login_bei {
+				background: #ccc;
+			}
+			
+			.login_beis {
+				background: #f23861;
+			}
+			
+			.state a {
+				color: #f23861;
+			}
+			
+			.bei {
+				background: url(../images/zhu.png) no-repeat left center;
+				background-size: 100% 100%;
+				border: none;
+			}
+			
+			.tel label {
+				width: 0.33rem;
+				height: 0.33rem;
+				display: inline-block;
+				background: url(../images/qw.gif) no-repeat;
+				background-size: contain;
+				float: right;
+				margin-top: 0.39rem;
+				margin-right: 0.4rem;
+				visibility: hidden;
+			}
+
+			.loading {
+			display: none;
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			background: #000;
+			opacity: 0.5;
+			z-index: 223; }
+			.loading p {
+			width: 2rem;
+			height: 2rem;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin-top: -1rem;
+			margin-left: -1rem;
+			background: url(../images/loading.gif) no-repeat;
+			background-size: 100% 100%;
+			z-index: 10000; }
+			.po {
+			  position: absolute;
+			  padding: 0.2rem 0.15rem;
+			  background: #000;
+			  opacity: 0.3;
+			  color: #fff;
+			  border-radius: 0.2rem 0.2rem;
+			  bottom: 10%;
+			  left: 50%;
+			  margin: 0 auto;
+			  display: none;
+			  white-space:nowrap;
+			}
+		</style>
+	</head>
+	<body>
+		<p class="po"></p>
+		<div class="loading">
+			<p></p>
+		</div>
+		<div class="login_page">
+			<header class="login_header">
+				<a href="do_index.html" class="as"></a>
+				<h1>填写手机号码</h1>
+			</header>
+			<section class="login_section">
+				<p class="tel"><span>手机号码</span><input type="tel" placeholder="请输入11位手机号码" id="tel" pattern="\d*" style="-webkit-appearance: none;"><label class="block"></label></p>
+				<h2 class="state"><p class="pss"></p>请阅读<a href="do_user.html">《掌财用户协议》</a>同意后进行下一步操作</h2>
+				<div class="login_btn login_bei">下一步</div>
+			</section>
+		</div>
+		<script>
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+		</script>
+		<script type="text/javascript" src="../js/jquery1.7.js"></script>
+		<script type="text/javascript">
+			;(function() {
+				$(".pss").on("click", function() {
+					if(!$(this).hasClass("bei")) {
+						$(this).addClass("bei");
+						$(".login_btn").removeClass("login_bei").addClass("login_beis");
+					} else {
+						$(this).removeClass("bei");
+						$(".login_btn").removeClass("login_beis").addClass("login_bei");
+					}
+				});
+
+				//手机号码验证
+				var reg = /^1[3|4|5|7|8]\d{9}$/;
+				$("#tel").on("input", function() {
+					tel = $(this).val();
+					if(tel.length > 0) {
+						$(".block").css({
+							"visibility": "visible"
+						});
+					} else {
+						$(".block").css({
+							"visibility": "hidden"
+						});
+					}
+					if(tel.length > 11) {
+						$(this).val($(this).val().substr(0, 11));
+					}
+				});
+
+				$(".block").on("click", function() {
+					$("#tel").val("");
+					$(this).css({
+						"visibility": "hidden"
+					});
+				});
+
+				//下一步
+				$(".login_btn").on("click", function() {
+					tel = $("#tel").val();
+					if($(this).hasClass("login_beis")) {
+						if(tel == "") {
+							getWidth("请输入手机号码");
+						} else {
+							if(!reg.test($("#tel").val())) {
+								getWidth("请输入正确手机号");
+							} else {
+								$.ajax({
+									url: "http://10.10.77.94:9888/GetWeChat",
+									type: 'GET',
+									dataType: "jsonp",
+									jsonp: "callback",
+									data: {
+										"typeX": "USER_REG_CHECK",
+										"tel": tel, //手机号
+										"btype": "json",
+										"ctype": "gb2312"
+									},
+									success: function(data) {
+										$(".loading").css("display", "block");
+										setTimeout(function() {
+											$(".loading").css("display", "none");
+											if(data.State == 0) {
+												sessionStorage.setItem("tel", tel); //Session
+												location.href = "do_ver.html";
+											} else if(data.State == 1) {
+												getWidth("已经注册过");
+											}
+										}, 1000)
+									},
+									error: function() {
+										$(".loading").css("display", "none");
+										alert("请求失败");
+									}
+								});
+							}
+						}
+					}
+				});
+
+				var _height = $(window).height();
+				$('.login_page').css({
+					'height': _height + 'px'
+				});
+
+				$(window).resize(function() {
+					$('.login_page').css({
+						'height': _height + 'px'
+					});
+				});
+				/* 加的内容*/
+				//提示错误信息
+				function getWidth(ma) {
+					$(".po").css("display", "block");
+					$(".po").html(ma);
+					var wid = $(".po").width() / 2;
+					$(".po").css({
+						"marginLeft": -wid + "px"
+					});
+					setTimeout("$('.po').hide()", 2000);
+				}
+			})(jQuery)
+		</script>
+	</body>
+</html>

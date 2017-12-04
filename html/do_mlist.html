@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=no,email=no,adress=no">
+		<meta name="full-screen" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<title>联动掌财公众号</title>
+		<link rel="stylesheet" type="text/css" href="../css/mlist.css">
+		<style>
+			.mark {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				background: rgba(0, 0, 0, 0.3);
+				left: 0;
+				top: 0;
+				padding: 1rem;
+				z-index: 10000;
+			}
+			
+			.quit {
+				width: 6.5rem;
+				background: #fff;
+				border-radius: 0.05rem;
+				margin: 0 auto;
+				position: relative;
+				top: 50%;
+				margin-left: -0.5rem;
+				transform: translateY(-50%);
+				-webkit-transform: translateY(-50%);
+				-moz-transform: translateY(-50%);
+				-o-transform: translateY(-50%);
+				-ms-transform: translateY(-50%);
+			}
+			
+			.quit .tit {
+				margin-bottom: 0.4rem;
+			}
+			
+			.quit .tit h4 {
+				height: 1.3rem;
+				line-height: 1.3rem;
+				border-bottom: 2px solid #49bce7;
+				font-weight: normal;
+			}
+			
+			.quit .tit h4 span {
+				padding-left: 0.25rem;
+				font-size: 0.48rem;
+				color: #49bce7;
+			}
+			
+			.quit .tit p {
+				height: 0.8rem;
+				line-height: 0.8rem;
+				font-size: 0.36rem;
+				color: #000;
+				padding-left: 0.25rem;
+				font-weight: bold;
+			}
+			
+			.quit .quit_btn {
+				border-top: 1px solid #dcdcdc;
+				display: flex;
+				display: -webkit-flex;
+				display: -moz-flex;
+				display: -ms-flex;
+			}
+			
+			.quit .quit_btn li {
+				width: 50%;
+				height: 1rem;
+				line-height: 1rem;
+				text-align: center;
+				font-size: 0.3rem;
+				font-weight: bold;
+			}
+			
+			.quit .quit_btn .cancel {
+				border-right: 1px solid #dcdcdc;
+			}
+			
+			.hide {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="listPage">
+			<div class="big1 bige">
+				<header class="header_list">
+					<h1>商务列表</h1>
+				</header>
+				<div class="banner">
+					<img src="../images/ban.png">
+				</div>
+
+				<div class="list_content">
+					<ul class="UL">
+						<!-- <li class="item">
+	          	          	<p class="p"><span>商户名称:</span><label>12123</label></p>
+	          	          	<ul class="ul_ol">
+	          		          	<li>00001</li>
+	          		          	<li>00002</li>
+	          		      	</ul>
+         				</li> -->
+					</ul>
+				</div>
+			</div>
+			<div class="big2 bige">
+				<header class="title">
+					<h1>个人中心</h1>
+				</header>
+				<ul class="lists">
+					<a href="do_mer_auth.html">
+						<li class="do_us">
+							<img src="../images/renzheng@3x.png">
+							<span>信用卡实名认证</span>
+						</li>
+					</a>
+					<a href="do_mer_authlist.html">
+						<li class="do_us">
+							<img src="../images/zhuangtai@3x.png">
+							<span>认证状态查询</span>
+						</li>
+					</a>
+					<a href="tel:400-112-5883">
+						<li>
+							<img src="../images/lianxikefu@3x.png">
+							<span>联系客服</span>
+						</li>
+					</a>
+					<a href="do_log.html" class="Ishide">
+						<li class="do_us">
+							<img src="../images/logs.png">
+							<span>内部日志分析系统</span>
+						</li>
+					</a>
+					<a href="do_Us.html">
+						<li class="do_us">
+							<img src="../images/guanyuwomen@3x.png">
+							<span>关于我们</span>
+						</li>
+					</a>
+				</ul>
+				<p class="back">安全退出</p>
+			</div>
+
+			<div class="mark" style="display: none">
+				<div class="quit">
+					<div class="tit">
+						<h4><span>提示</span></h4>
+						<p>确定要离开掌财公众号吗？</p>
+					</div>
+					<ul class="quit_btn">
+						<li id="cancel" class="cancel">取消</li>
+						<li id="finishbt" class="confirm">确定</li>
+					</ul>
+				</div>
+			</div>
+
+			<div id="footer">
+				<ul class="ul">
+					<li class="li">
+						<img src="../images/gongzuoguanli1.png">
+						<label style="color: #f23861">工作管理</label>
+					</li>
+					<li>
+						<img src="../images/gerenzhongxin.png">
+						<label>个人中心</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+		</script>
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript">
+		;(function() {
+		 	var a = false;
+	        var phone = sessionStorage.getItem("phone");
+	        var SessionID = sessionStorage.getItem("SessionID");
+	        var html = "";
+	        var str = "";
+
+	        $.ajax({
+		        url: "http://10.10.77.94:9888/GetWeChat",
+		        type: "GET",
+	            dataType: "jsonp",  
+	            jsonp: "callback",
+	            data: {
+	            "typeX": "USER_GET_BIND_MERS",  
+	            "tel": phone,
+	            "btype": "json",
+	            "ctype": "gb2312",
+	            "SessionID":SessionID
+	            },
+		        success: function(data) {
+			        var obj = data.a;
+			        for(var atr in obj) {
+				        html += "<li class='item'><p class='p'><span>商户 : </span><label>" + obj[atr][0].mername + "</label><i>" +obj[atr][0].merid+"</i></p><ul class='ul_ol hide'></ul></li>";
+	 					console.log(obj[atr][0].mername + "," + obj[atr][0].merid);
+			        }
+			        $(".UL").html(html);
+			        $(".item p").on("click", function() {
+				        var index = $(this).parent(".item").index();
+				        var that = $(this);
+				        var that_mar=$(this).find("i").text();
+
+				        $.ajax({
+					        url: "http://10.10.77.94:9888/GetWeChat",
+	                        type: "GET",
+	                        dataType: "jsonp",    
+	                        jsonp: "callback",
+	                        data: {
+	                          "typeX": "U_SEL_POS_TERM_LIST",   
+	                          "tel": phone,
+	                          "btype": "json",
+	                          "ctype": "gb2312",
+	                          "MerId":that_mar, 
+	                          "SessionID":SessionID
+	                        }, 
+
+					        success: function(data) {
+						        var obj1 = data.a;
+						        str = ""
+						        for(var atr in obj1) {
+							        str += "<li>终端 : <label>" + obj1[atr][0].posId + "</label></li>";
+	                                     console.log(obj1[atr][0].posId); 
+						        }
+						        str += "";
+						        that.siblings(".ul_ol").html(str);
+					        },
+					        error: function() {
+						        alert("请求失败");
+					        }
+				        });
+
+				        $(this).siblings(".ul_ol").toggleClass("hide");
+				        $(this).parent().siblings(".item").find(".ul_ol").addClass("hide");
+			        })
+	              
+
+		        },
+		        error: function() {
+			        alert("请求失败");
+		        }
+	          });
+
+ 
+	        $(".UL").on("click", ".ul_ol li", function() {
+		        var number = $(this).find("label").text();
+		        var name = $(this).parent().prev().find("i").text();
+				var mername = $(this).parent().prev().find("label").text(); 
+		        sessionStorage.setItem("name", name); //商户号
+		        sessionStorage.setItem("number", number); //终端号
+		        sessionStorage.setItem("mername", mername); //商户简称
+		        location.href = "do_query.html"; 
+	        });
+
+			// 关于我们    KSX00000947 
+			$(".do_us").on("tap", function() {
+				sessionStorage.setItem("do_us", "true");
+			});
+
+			var do_us = sessionStorage.getItem("do_us");
+			if(do_us == "true") {
+				$(".bige").eq(1).show().siblings(".bige").hide();
+				$("#footer li").eq(0).find("img").attr("src", "../images/gongzuoguanli.png");
+				$("#footer li").eq(0).find("label").css("color", "#333");
+				$("#footer li").eq(1).find("img").attr("src", "../images/gerenzhongxin1.png");
+				$("#footer li").eq(1).find("label").css("color", "#f23861");
+			}
+
+			//控制下面2个标签的
+			$("#footer li").on("tap", function() {
+				var index = $(this).index();
+				$(".bige").eq(index).show().siblings(".bige").hide();
+				if(index == 0) {
+					$(this).siblings("li").find("img").attr("src", "../images/gerenzhongxin.png");
+					$(this).find("img").attr("src", "../images/gongzuoguanli1.png");
+					$(this).find("label").css("color", "#f23861");
+					$(this).siblings("li").find("label").css("color", "#333");
+				} else if(index == 1) {
+					$(this).siblings("li").find("img").attr("src", "../images/gongzuoguanli.png");
+					$(this).find("img").attr("src", "../images/gerenzhongxin1.png");
+					$(this).find("label").css("color", "#f23861");
+					$(this).siblings("li").find("label").css("color", "#333");
+				}
+			});
+
+			// 安全退出
+			$(".back").on("tap", function() {
+				$(".mark").show();
+			});
+
+			//取消
+			$("#cancel").on("tap", function() {
+				$(".mark").hide();
+			});
+
+			//内部日志分析系统
+			sessionStorage.setItem("logs","logsnew");
+			var logs=sessionStorage.getItem("logs");
+			console.log(logs);
+			if(logs==="logsnew"){
+				$(".Ishide").show();
+			}else{
+				$(".Ishide").hide();
+			}
+
+		})(Zepto)
+		</script>
+	</body>
+
+</html>

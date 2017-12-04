@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="format-detection" content="telephone=no,email=no,adress=no">
+	<meta name="full-screen" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="../css/public.css">
+	<link rel="stylesheet" type="text/css" href="../css/log.css">
+	<link rel="stylesheet" type="text/css" href="../css/mobiscroll.custom-2.6.2.min.css">
+</head>
+<body>
+  <div class="loading"> 
+   <p></p> 
+  </div> 
+	<div class="content">
+		<header class="header">
+			<a class="back">返回</a>
+			<span>内部日志分析系统</span>
+		</header>
+		<div class="box">
+		<div class="log_date"><span>日期：</span><input readonly="readonly" placeholder="请选择日期" id="date"></div>
+		<!-- <div class="logs">
+            <div><span class="span">简要日志</span></div>
+              <ul>
+                  <li class="li1">日期控件
+                  <p><input id="date1" name="scroller" readonly="readonly" /></p>
+                  <p><span></span></p>
+                  <p><input id="date2" name="scroller" readonly="readonly" /></p>
+                  </li>
+                <li class="li2"><span>关键字：</span><textarea maxlength="256" id="textarea1"></textarea></li>
+                <li class="li3"><span>上下多少行：</span><input type="number" placeholder="请输入数字" id="number1"></li>
+               </ul>
+            </div> -->
+       <!--  <div class="logs">
+       <div><span class="span">详细日志</span></div>
+         <ul>
+             <li class="li1">日期控件
+             <p><input id="date3" name="scroller" readonly="readonly" /></p>
+             <p><span></span></p>
+             <p><input id="date4" name="scroller" readonly="readonly" /></p>
+             </li>
+           <li class="li2"><span>关键字：</span><input id="textarea2"></li>
+           <li class="li3"><span>上下多少行：</span><input type="number" placeholder="" id="number2"></li>
+            <form>
+            <li class="log_radio">
+               <label><input name="logs" type="radio" value="" checked="checked" /><span>monitor</span> </label>
+               <label><input name="logs" type="radio" value="" /><span>iMPServ</span></label>
+               <label><input name="logs" type="radio" value=""/><span>msglog</span> </label> 
+               <label><input name="logs" type="radio" value="" /><span>Portald</span> </label> 
+               <label><input name="logs" type="radio" value="" /><span>PayLink</span> </label>
+               <label><input name="logs" type="radio" value="" /><span>iAddProc</span> </label> 
+               <label><input name="logs" type="radio" value="" /><span>iBackProc</span> </label>
+               <label style="-webkit-flex: 1"><input name="logs" type="radio" value="" /><span>iMPServ.monitor</span></label>
+           </li>
+           </form>
+          </ul>
+       </div> -->
+        <div class="logs">
+        <div><span class="span">详细日志</span></div>
+          <ul>
+              <li class="li1"><!-- 日期控件 -->
+              <p><input id="date3" name="scroller" readonly="readonly" /></p>
+              <p><span></span></p>
+              <p><input id="date4" name="scroller" readonly="readonly" /></p>
+              </li>
+            <!-- <li class="li2"><span>关键字：</span><textarea maxlength="256" id="textarea2"></textarea></li> -->
+
+            <li class="li2"><span>关键字：</span><input id="textarea2"></li>
+
+            <li class="li3"><span>上下多少行：</span><input type="number" placeholder="0" id="number2"></li>
+
+             <li class="li3"><span>日志类型：</span> </li>
+
+              <li class="log_radio_log">
+              <label><input name="logst" type="radio" value="" /><span>keywords</span> </label>
+              <label><input name="logst" type="radio" value="" /><span>timerange</span> </label>
+              <label><input name="logst" type="radio" value="" /><span>etc</span> </label>
+              </li>
+
+            <li class="li3"><span>日志模块：</span> </li>
+
+             <li class="log_radio">
+                <label><input name="logs" type="radio" value="" /><span>etc</span> </label> 
+              <label><input name="logs" type="radio" value="" /><span>monitor</span> </label>                             
+              <label><input name="logs" type="radio" value="" /><span>msglog</span> </label> 
+              <label><input name="logs" type="radio" value="" /><span>iMPServ</span></label>
+              <label><input name="logs" type="radio" value="" /><span>Portald</span> </label> 
+              <label><input name="logs" type="radio" value="" /><span>PayLink</span> </label>
+              <label><input name="logs" type="radio" value="" /><span>iAddProc</span> </label> 
+              <label><input name="logs" type="radio" value="" /><span>iAgt</span> </label> 
+              <label><input name="logs" type="radio" value="" /><span>iBackProc</span> </label> 
+              <label style="-webkit-flex: 1"><input name="logs" type="radio" value="" /><span>iMPServ.monitor</span></label>
+                
+            </li>
+           </ul>
+        </div>
+		<div class="submit_btn" id="c_submitBtn">
+				提&nbsp;&nbsp;交
+		</div> 
+		</div>
+	</div>
+	<script>
+	document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+	</script>
+	<script type="text/javascript" src="../js/zepto.min.js"></script>
+	<script type="text/javascript" src="../js/jquery1.7.js"></script>
+	<script type="text/javascript" src="../js/mobiscroll.custom-2.6.2.min.js"></script>
+	<script type="text/javascript" src="../js/js.js"></script>
+	<script type="text/javascript">
+  $('#number2').val("0")
+	     //返回
+        $(".back").on("tap",
+        function() {
+            window.history.go( - 1);
+        });
+ 
+       //日期
+       hosDate1 = GetDateStr(0);
+       $("#date").val(hosDate1);
+       $("#date3").val("00:00");
+       $("#date4").val("23:59");
+       $("#date").focus(function() {
+	       loadtime("#date", "date");
+	     });
+
+       $("#date3").focus(function(){
+       	 loadtime("#date3", "time");
+       });
+
+       $("#date4").focus(function(){
+       	 loadtime("#date4", "time");
+       });
+
+       //提交
+       $("#c_submitBtn").on("tap",function(){
+        var date=$("#date").val().replace(/-/g,""),
+            date3=$("#date3").val().replace(/:/g,""),
+            date4=$("#date4").val().replace(/:/g,""),
+            textarea2=$("#textarea2").val(),
+            number2=$("#number2").val(),
+            logs=$('input[name="logs"]:checked').next('span').html(); 
+
+           $(".loading").css("display", "block");
+
+           setTimeout(function() {
+              $(".loading").css("display", "none");
+
+             //请求成功，执行内容
+            },
+            1000) 
+       });
+	</script>
+</body>
+</html>

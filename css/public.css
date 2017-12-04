@@ -1,0 +1,110 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; }
+
+body, div, p, ul, ol, li, dl, dt, dd, form, input, table, img, h1, h2, h3, h4, h5, h6, header, section, footer, nav, figure, figcaption, article {
+  margin: 0;
+  padding: 0; }
+
+header, section, footer, nav, figure, figcaption, article, menu {
+  display: block; }
+
+body {
+  font-size: 12px;
+  font-family: "微软雅黑"; }
+
+ul, li, ol {
+  list-style: none; }
+
+a, a:hover {
+  text-decoration: none;
+  color: #393737; }
+
+img {
+  border: none;
+  display: inline-block;
+  vertical-align: top; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 0.38rem;
+  font-weight: normal; }
+
+em, i {
+  font-style: normal; }
+
+.l, .left {
+  float: left;
+  display: inline-block; }
+
+.r, .right {
+  float: right;
+  display: inline-block; }
+
+.clearfix:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  clear: both; }
+
+header, nav, section, footer {
+  min-width: 320px; }
+
+.w280 {
+  min-width: 280px;
+  margin: 0 2%; }
+
+.w300 {
+  min-width: 300px;
+  margin: 0 3%; }
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative; }
+/*loading动画*/
+.loading {
+display: none;
+width: 100%;
+height: 100%;
+position: fixed;
+background: #000;
+opacity: 0.5;
+z-index: 223; }
+.loading p {
+width: 2rem;
+height: 2rem;
+position: absolute;
+left: 50%;
+top: 50%;
+margin-top: -1rem;
+margin-left: -1rem;
+background: url(../images/loading.gif) no-repeat;
+background-size: 100% 100%;
+z-index: 10000; }
+.po {
+  position: absolute;
+  padding: 0.2rem 0.15rem;
+  background: #000;
+  opacity: 0.3;
+  color: #fff;
+  border-radius: 0.2rem 0.2rem;
+  bottom: 10%;
+  left: 50%;
+  margin: 0 auto;
+  display: none;
+  white-space:nowrap;
+}

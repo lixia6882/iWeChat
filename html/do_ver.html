@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=no,email=no,adress=no">
+		<meta name="full-screen" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<title>联动掌财公众号</title>
+		<link rel="stylesheet" type="text/css" href="../css/public.css">
+		<style type="text/css">
+			.ver_page {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				display: -webkit-flex;
+				display: -moz-flex;
+				display: -ms-flex;
+				flex-direction: column;
+				-webkit-flex-direction: column;
+				-ms-flex-direction: column;
+				-moz-flex-direction: column;
+				background: #f0f0f0 url(../images/logo_gray.png) no-repeat center bottom 0.9rem;
+		  		background-size: 2rem 2rem;
+			}
+			
+			.login_header {
+				width: 100%;
+				height: 0.86rem;
+				background: #fff;
+				line-height: 0.86rem;
+				text-align: center;
+				position: relative;
+			}
+				
+			.as {
+				position: absolute;
+				display: block;
+				left: 0.42rem;
+				top: 50%;
+				margin-top: -0.2rem;
+				padding-left: 0.36rem;
+				background: url(../images/8_03.gif) no-repeat left center;
+				background-size: 0.25rem 0.43rem;
+				width: 0.25rem;
+				height: 0.43rem;
+			}
+				
+			.login_section {
+				-webkit-flex: 1;
+				width: 100%;
+				height: 100%;
+				display: flex;
+				display: -webkit-flex;
+				display: -moz-flex;
+				display: -ms-flex;
+				flex-direction: column;
+				-webkit-flex-direction: column;
+				-ms-flex-direction: column;
+				-moz-flex-direction: column;
+			    padding: 0.3rem;
+			    padding-top: 0.49rem;
+			   }
+		   	.divs{
+			   	  width: 100%;
+			      height: 1rem;
+			      border-radius: 0.2rem;
+			      background: #fff;
+			      line-height: 1.04rem;
+			      padding-left: 0.23rem;
+			      margin-bottom: 0.3rem; 
+			      font-size: 0.32rem;
+			      position: relative;
+		   	}
+		   	.divs span{
+				color: #989898;
+				width: 1.79rem;
+				display: inline-block;
+				font-size: 0.32rem;
+			}
+				
+			.divs input {
+				width: 2.7rem;
+				height: 90%;
+				font-size: 0.28rem;
+				border: none;
+				outline: none;
+		        font-size: 0.3rem;
+		        color: #b9b9b9;
+		   }
+		   .login_btn{
+			   	  width:6rem;
+			      height: 0.8rem;
+			      background: #f23861;
+			      border-radius: 10rem 10rem;
+			      line-height: 0.8rem;
+			      margin: 0 auto;
+			      font-size: 0.36rem;
+			      margin-top:0.9rem;
+			      text-align: center;
+			      color: #fff;
+			      letter-spacing: 2px;
+		   } 
+		   .divs .lab{
+				   	color: #f23861;
+					font-size: 0.3rem;
+					width: 2rem;
+					display: block;
+					height: 100%;
+					background: #f8f8f8;
+					position: absolute;
+					right: 0;
+					top: 0;
+					text-align: center;
+					border-bottom-right-radius: 0.2rem;
+					border-top-right-radius: 0.2rem;
+			}
+				
+			.label {
+				display: block;
+				width: 2rem;
+				height: 100%;
+				position: absolute;
+				right: 0;
+				top: 0;
+				text-align: center;
+			}
+				
+			.label img {
+				width: 0.32rem;
+				height: 0.2rem;
+				vertical-align: middle;
+			}
+
+			.loading {
+				display: none;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				background: #000;
+				opacity: 0.5;
+				z-index: 223; }
+				.loading p {
+				width: 2rem;
+				height: 2rem;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-top: -1rem;
+				margin-left: -1rem;
+				background: url(/posp/images/loading.gif) no-repeat;
+				background-size: 100% 100%;
+				z-index: 10000;
+			}
+			.po {
+			  position: absolute;
+			  padding: 0.2rem 0.15rem;
+			  background: #000;
+			  opacity: 0.3;
+			  color: #fff;
+			  border-radius: 0.2rem 0.2rem;
+			  bottom: 10%;
+			  left: 50%;
+			  margin: 0 auto;
+			  display: none;
+			  white-space:nowrap;
+			}
+		</style>
+	</head>
+	<body>
+		<p class="po"></p>
+		<div class="loading">
+			<p></p>
+		</div>
+		<div class="ver_page">
+			<header class="login_header">
+				<a href="do_login.html" class="as"></a>
+				<h1>填写验证码</h1>
+			</header>
+			<section class="login_section">
+				<div class="divs">
+					<span>验证码</span>
+					<input type="tel" placeholder="请输入验证码" id="ver1" pattern="\d*">
+					<label class="lab" iSclick="true">获取验证码</label>
+				</div>
+				<div class="divs">
+					<span>登录密码</span>
+					<input type="password" placeholder="6-12位登录密码" id="ver2">
+					<label class="label"><img src="../images/biyan@2x.png" id="changed"></label>
+				</div>
+				<div class="login_btn login_bei">
+					下一步
+				</div>
+			</section>
+		</div>
+		<textarea style="display:none" id="tra" rows="15" cols="65">-----BEGIN PUBLIC KEY----- MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSepHLK4xUekUQaEl3ZW DcbGJVq+e42am/VAHly4INpup78HsK5Co4jNA8TkQzoxn/IPOhqcrwaIpHXA1ZPe Ezf5qXefgPh6P/cuRkLgnOvOaYSa++gRvGaH59elMjkezF2v8wPbMjgVTAXd0WPS diMqjb8QwKdAUZ1WktQ7/BhStay65bqwIweY/1cBG03Y0bYvt+4+lCHzFejUiLgN bwZDziIpwtm/L2LLQcu7nh5h4s1ZzcBnImeiolFZJhl8vcuKGg15EkpnDgXTp1dz X1H8vQmgbdVy+Rfx7EB2MFBY6SB6wcpw/k8ZYLFjTU/GsnszCCz8SSW4uhPAKJql BQIDAQAB -----END PUBLIC KEY-----</textarea>
+		<script>
+			document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+		</script>
+		<script type="text/javascript" src="../js/jquery1.7.js"></script>
+		<script type="text/javascript" src="../js/hideShowPassword.min.js"></script>
+		<script type="text/javascript" src="../js/jsencrypt.min.js"></script>
+		<script type="text/javascript">
+			;(function() {
+				//获取手机号
+				var tel = sessionStorage.getItem("tel");
+				var countdown = 60;
+
+				function GetNumber() {
+					$(".lab").html(countdown + "s");
+					countdown--;
+					if(countdown >= 0) {
+						timer = setTimeout(GetNumber, 2000);
+					} else {
+						$(".lab").html("获取验证码");
+						countdown = 60;
+						$(".lab").attr("iSclick", "true");
+					}
+				}
+
+				//获取验证码
+				var authCodeNo;
+				$(".lab").on("click", function() {
+					if($(this).attr("iSclick") == "true") {
+						GetNumber();
+						$(this).attr("iSclick", "false");
+						$.ajax({
+							url: "http://10.10.77.94:9888/GetWeChat",
+							type: 'GET',
+							dataType: "jsonp",
+							jsonp: "callback",
+							data: {
+								"typeX": "USER_GET_AUTHCODE",
+								"tel": tel, //手机号
+								"btype": "json",
+								"ctype": "gb2312"
+							},
+							success: function(data) {
+                                    console.log(data);
+                                    authCodeNo = data.authCodeNo;
+                                    console.log(authCodeNo);
+							},
+							error: function() {
+								alert("请求失败");
+							}
+						});
+					}
+				})
+
+				/*验证码*/
+				$("#ver1").on("input", function() {
+					var val = $(this).val();
+					var lens = $(this).val().length;
+					if(lens > 4) {
+						$(this).val($(this).val().substr(0, 4));
+					}
+					this.value = this.value.replace(/\s/g, '').replace(/[^\d]/g, '');
+				});
+
+				/*密码*/
+				$("#ver2").on("input", function() {
+					var lens = $(this).val().length;
+					if(lens > 0) {
+						$(".lads").css({
+							"visibility": "visible"
+						});
+
+					} else {
+						$(".lads").css({
+							"visibility": "hidden"
+						});
+					}
+					if(lens > 12) {
+						$(this).val($(this).val().substr(0, 12));
+					}
+				});
+
+				//密码显示
+				var da = false;
+				$(".label").on("click", "img", function() {
+					if(!da) {
+						$(this).attr("src", "../images/zhengyan@2x.png");
+						$('#ver2').showPassword(); //可见密码
+						da = true;
+					} else {
+						$(this).attr("src", "../images/biyan@2x.png");
+						$('#ver2').hidePassword(); //隐藏密码
+						da = false;
+					}
+
+				});
+
+				/*下一步*/
+				var pwd = /^[a-zA-Z0-9]{6,12}$/;
+				$(".login_btn").on("click", function() {
+				    var authCode = $("#ver1").val();
+				    //获取验证码
+				    var loginPWD = $("#ver2").val(); //密码
+
+					if(authCode == "") {
+						getWidth("请输入验证码");
+					} else if(authCode.length < 4) {
+						getWidth("验证码格式不正确");
+					} else if(loginPWD == "") {
+						getWidth("请输入密码");
+					} else if(!pwd.test(loginPWD)) {
+						getWidth("请输入6-12位的数字或字母");
+					} else {
+
+						var encrypt = new JSEncrypt();
+						encrypt.setPublicKey($("#tra").val());
+						var datapwd = encrypt.encrypt(loginPWD);
+						$.ajax({
+							url: "http://10.10.77.94:9888/GetWeChat",
+							type: 'GET',
+							dataType: "jsonp",
+							jsonp: "callback",
+							data: {
+								"typeX": "USER_REGISTER",
+								"loginPWD": encodeURI(datapwd), //密码
+								"authCode": authCode, //验证码
+								"tel": tel, //手机号 
+								"authCodeNo": authCodeNo,
+								"btype": "json",
+								"ctype": "gb2312"
+							},
+							success: function(data) {
+								$(".loading").css("display", "block");
+								setTimeout(function() {
+									$(".loading").css("display", "none");
+									if(data.code == "0000") {
+//										getWidth(data.msg);
+					                                        //alert("注册成功");
+										location.href = "do_index.html"; //跳转
+									} else {
+										getWidth(data.msg);
+									}
+								}, 1000)
+							},
+							error: function() {
+								$(".loading").css("display", "none");
+								alert("请求失败");
+							}
+						});
+					}
+				})
+
+				//解决安卓的高度
+				var _height = $(window).height();
+				$('.ver_page').css({
+					'height': _height + 'px'
+				});
+				$(window).resize(function() {
+					$('.ver_page').css({
+						'height': _height + 'px'
+					});
+				});
+
+				//提示错误信息
+				function getWidth(ma) {
+					$(".po").css("display", "block");
+					$(".po").html(ma);
+					var wid = $(".po").width() / 2;
+					$(".po").css({
+						"marginLeft": -wid + "px"
+					});
+					setTimeout("$('.po').hide()", 2000);
+				}
+			})(jQuery)
+		</script>
+	</body>
+</html>
