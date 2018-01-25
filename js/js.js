@@ -67,18 +67,39 @@ function loadtime(add, time,classname) {
         yearText: '年',
         //面板中年月日文字  
         showNow: false,
-        startYear: currYear,
+        startYear: currYear-2,
         //开始年份    
         endYear: currYear + 50,
         //结束年份 
         //endYear:2099 //结束年份 
-        onSelect: function() {
+        onSelect: function(valueText) {
             $(classname).show();
         }
 
     };
     $(add).mobiscroll(opt);
 }
+
+//日期
+function loadtime_date(id,id_find,time){
+   var currYear_date = (new Date()).getFullYear();
+   var currDay_date = (new Date()).getDate(); // 获取日  
+   console.log(currDay_date);
+    $(id).mobiscroll().date({ 
+          theme: "android-ics light",  
+          lang: "zh",  
+          display: 'modal',  
+          mode:"scroller",
+          dateFormat: time,
+          dateOrder:'yyyymmdd',
+          startYear:currYear_date-1,
+          endYear: currYear_date + 50,
+          onSelect: function (valueText, inst) {  
+             $(this).find(id_find).val(valueText);
+          }
+  });
+}
+
 
 // 字符串转换为日期
 function strToDate(std) {
@@ -89,6 +110,7 @@ function strToDate(std) {
 }
 
 
+//补零
 function GetDateStr(AddDayCount) {
   var dd = new Date();
   dd.setDate(dd.getDate() + AddDayCount); //获取AddDayCount天后的日期

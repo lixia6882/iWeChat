@@ -38,7 +38,7 @@
 				</ul>
 				<ul class="credit_list">
                     <li class="credit_items">
-                                        <span class="nn">姓名:</span>
+                        <span class="nn">姓名:</span>
 						<input type="text" id="c_name" readonly="" placeholder="请选择认证商户" />
 					</li> 
 					<li class="credit_items">
@@ -53,7 +53,7 @@
                                         <span class="nn">银行预留手机号:</span>
 						<input type="tel" id="c_tel" maxlength="11" />
 					</li> 
-					<li class="credit_items">
+					<li class="credit_items" id="credit_items">
 						<span>有效期:</span>
 						<input type="text" id="c_valid" readonly="readonly" />
                         <label class="label"></label>
@@ -88,6 +88,7 @@
         <script type="text/javascript" src="../js/zepto.min.js"></script>
         <script type="text/javascript" src="../js/mobiscroll.custom-2.6.2.min.js"></script>
         <script type="text/javascript" src="../js/jsencrypt.min.js"></script>
+       <!--  <script type="text/javascript" src="../js/js.js"></script> -->
         <script type="text/javascript">
         ; (function() {
             var phone = sessionStorage.getItem("phone");
@@ -144,8 +145,7 @@
             })
 
             // 信用卡卡号
-            $("#c_cardNum").on("input propertychang",
-            function() {
+            $("#c_cardNum").on("input propertychang", function() {
                 var $this = $(this),
                 v = $this.val();
             /\S{5}/.test(v) && $this.val(v.replace(/\s/g, '').replace(/(.{4})/g, "$1 "));
@@ -154,10 +154,8 @@
             // 有效期
             $("#c_valid").focus(function() {
                 loadtime("#c_valid", "date");
-
-
             });
-
+            loadtime_date("#credit_items","#c_valid");
             $("#c_cvv2").on("input", function(){
                 this.value = this.value.replace(/\s/g,'').replace(/[^\d]/g,'');
             });
@@ -219,8 +217,9 @@
                 var year = new Date().getFullYear().toString().substr(2);
                 var mon = new Date().getMonth()+1;  
                 if(c_valid.substr(0, 2) == year){
-                    if(c_valid.substr(2) <= mon){
+                    if(c_valid.substr(3) <= mon){
                         getWidth("有效期小于当前日期");
+                        return;
                     }
                 }
 
@@ -325,7 +324,7 @@
 
                 };
                 $(add).mobiscroll(opt);
-              /*  */
+     
             }
 
             // 提示错误信息
@@ -340,8 +339,7 @@
             }
 
             //返回
-            $(".back").on("tap",
-            function() {
+            $(".back").on("tap",function() {
                 window.history.go( - 1);
             })
 
@@ -350,6 +348,29 @@
                 $("#c_valid").val("");
                 $(this).hide();
             })
+
+
+
+            //日期
+            function loadtime_date(id,id_find,time){
+               var currYear_date = (new Date()).getFullYear();
+               var currDay_date = (new Date()).getDate(); // 获取日  
+               console.log(currDay_date);
+                $(id).mobiscroll().date({ 
+                      theme: "android-ics light",  
+                      lang: "zh",  
+                      display: 'modal',  
+                      mode:"scroller",
+                      dateFormat:'yyyy/mm',
+                      dateOrder:'yyyymm',
+                      startYear:currYear_date-1,
+                      endYear: currYear_date + 50,
+                      onSelect: function (valueText, inst) {  
+                         $(this).find(id_find).val(valueText);
+                      }
+              });
+            }
+
         })(Zepto)
         </script>
 	</body>

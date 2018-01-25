@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -23,70 +23,33 @@
 			<span>内部日志分析系统</span>
 		</header>
 		<div class="box">
-		<div class="log_date"><span>日期：</span><input readonly="readonly" placeholder="请选择日期" id="date"></div>
-		<!-- <div class="logs">
-            <div><span class="span">简要日志</span></div>
-              <ul>
-                  <li class="li1">日期控件
-                  <p><input id="date1" name="scroller" readonly="readonly" /></p>
-                  <p><span></span></p>
-                  <p><input id="date2" name="scroller" readonly="readonly" /></p>
-                  </li>
-                <li class="li2"><span>关键字：</span><textarea maxlength="256" id="textarea1"></textarea></li>
-                <li class="li3"><span>上下多少行：</span><input type="number" placeholder="请输入数字" id="number1"></li>
-               </ul>
-            </div> -->
-       <!--  <div class="logs">
-       <div><span class="span">详细日志</span></div>
-         <ul>
-             <li class="li1">日期控件
-             <p><input id="date3" name="scroller" readonly="readonly" /></p>
-             <p><span></span></p>
-             <p><input id="date4" name="scroller" readonly="readonly" /></p>
-             </li>
-           <li class="li2"><span>关键字：</span><input id="textarea2"></li>
-           <li class="li3"><span>上下多少行：</span><input type="number" placeholder="" id="number2"></li>
-            <form>
-            <li class="log_radio">
-               <label><input name="logs" type="radio" value="" checked="checked" /><span>monitor</span> </label>
-               <label><input name="logs" type="radio" value="" /><span>iMPServ</span></label>
-               <label><input name="logs" type="radio" value=""/><span>msglog</span> </label> 
-               <label><input name="logs" type="radio" value="" /><span>Portald</span> </label> 
-               <label><input name="logs" type="radio" value="" /><span>PayLink</span> </label>
-               <label><input name="logs" type="radio" value="" /><span>iAddProc</span> </label> 
-               <label><input name="logs" type="radio" value="" /><span>iBackProc</span> </label>
-               <label style="-webkit-flex: 1"><input name="logs" type="radio" value="" /><span>iMPServ.monitor</span></label>
-           </li>
-           </form>
-          </ul>
-       </div> -->
+		<div class="log_date" id="log_date"><span>日期：</span><input readonly="readonly" placeholder="请选择日期" id="date"></div>
         <div class="logs">
         <div><span class="span">详细日志</span></div>
           <ul>
-              <li class="li1"><!-- 日期控件 -->
+            <li class="li1"><!-- 日期控件 -->
               <p><input id="date3" name="scroller" readonly="readonly" /></p>
               <p><span></span></p>
               <p><input id="date4" name="scroller" readonly="readonly" /></p>
-              </li>
-            <!-- <li class="li2"><span>关键字：</span><textarea maxlength="256" id="textarea2"></textarea></li> -->
+            </li>
 
             <li class="li2"><span>关键字：</span><input id="textarea2"></li>
 
             <li class="li3"><span>上下多少行：</span><input type="number" placeholder="0" id="number2"></li>
 
-             <li class="li3"><span>日志类型：</span> </li>
+            <li class="li3"><span>日志类型：</span> </li>
 
-              <li class="log_radio_log">
+            <li class="log_radio_log">
               <label><input name="logst" type="radio" value="" /><span>keywords</span> </label>
               <label><input name="logst" type="radio" value="" /><span>timerange</span> </label>
               <label><input name="logst" type="radio" value="" /><span>etc</span> </label>
-              </li>
+            </li>
 
             <li class="li3"><span>日志模块：</span> </li>
 
-             <li class="log_radio">
-                <label><input name="logs" type="radio" value="" /><span>etc</span> </label> 
-              <label><input name="logs" type="radio" value="" /><span>monitor</span> </label>                             
+            <li class="log_radio">
+              <label><input name="logs" type="radio" value="" /><span>etc</span> </label> 
+              <label><input name="logs" type="radio" value="" /><span>monitor</span> </label>
               <label><input name="logs" type="radio" value="" /><span>msglog</span> </label> 
               <label><input name="logs" type="radio" value="" /><span>iMPServ</span></label>
               <label><input name="logs" type="radio" value="" /><span>Portald</span> </label> 
@@ -94,8 +57,7 @@
               <label><input name="logs" type="radio" value="" /><span>iAddProc</span> </label> 
               <label><input name="logs" type="radio" value="" /><span>iAgt</span> </label> 
               <label><input name="logs" type="radio" value="" /><span>iBackProc</span> </label> 
-              <label style="-webkit-flex: 1"><input name="logs" type="radio" value="" /><span>iMPServ.monitor</span></label>
-                
+              <label style="-webkit-flex: 1"><input name="logs" type="radio" value="" /><span>iMPServ.monitor</span></label> 
             </li>
            </ul>
         </div>
@@ -124,10 +86,7 @@
        $("#date").val(hosDate1);
        $("#date3").val("00:00");
        $("#date4").val("23:59");
-       $("#date").focus(function() {
-	       loadtime("#date", "date");
-	     });
-
+       loadtime_date("#log_date","#date");
        $("#date3").focus(function(){
        	 loadtime("#date3", "time");
        });
@@ -144,10 +103,8 @@
             textarea2=$("#textarea2").val(),
             number2=$("#number2").val(),
             logs=$('input[name="logs"]:checked').next('span').html(); 
-
-           $(".loading").css("display", "block");
-
-           setTimeout(function() {
+            $(".loading").css("display", "block");
+            setTimeout(function() {
               $(".loading").css("display", "none");
 
              //请求成功，执行内容
