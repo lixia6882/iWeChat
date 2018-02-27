@@ -415,6 +415,7 @@
         TradeDate = $(this).siblings(".timeli").children("label").text().substr(0, 8);
         TradeTime = $(this).siblings(".timeli").children("label").text().substr(8, 13);
         Amount = $(this).siblings(".liAmount").children("label").text();
+        console.log(Amount);
         console.log(TradeDate);
         sessionStorage.setItem("SerialNo",SerialNo);  //
 
